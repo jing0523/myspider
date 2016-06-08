@@ -1,7 +1,8 @@
 import scrapy
 import urllib2
 import BeautifulSoup
-from myspider.items import MyspiderItem
+import datetime
+from myspider.items import MyspiderItem_NOTICE
 from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
 
@@ -22,19 +23,20 @@ class MyBaseSpider(BaseSpider):
         # private variables for parsing HTML page
         self.flurls = []
 
-    # def geturlContent(self, l):
-    #
-    #     rp = urllib2.urlopen(l)
-    #     content = rp.read()
-    #     if content:
-    #         rp = BeautifulSoup.BeautifulSoup(content)
-    #         return rp.getText()
+    # todo:change detection filter by datetime test
+    def timefilter(self, rptime):
+
+        crtime = datetime.date.today().strftime('%Y-%m-%d')
+        if crtime == rptime:  # .replace('_',''):
+            return True
+        else:
+            return False
 
     def parse(self, response):
         selector = HtmlXPathSelector(response)
         sels = selector.select('//div[@id="wuhang"]/ul/li')
         for sel in sels:
-            item = MyspiderItem()
+            item = MyspiderItem_NOTICE()
 
             partial_url = ''.join(sel.select('a/@href').extract())
             partial_time = ''.join(sel.select('span/text()').extract())
@@ -63,4 +65,8 @@ class MyBaseSpider(BaseSpider):
             item['NOTICE_REF'] = _url
             item['NOTICE_DATETIME'] = partial_time
 
-            yield item
+            display = self.timefilter(partial_time)
+            if display:  # showcurrent date
+                yield item
+            else:
+                continue

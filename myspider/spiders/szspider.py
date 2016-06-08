@@ -1,13 +1,15 @@
+# -*- coding: utf-8 -*-
+
 import scrapy
 import urllib2
 import BeautifulSoup
-from myspider.items import MyspiderItem
+from myspider.items import MyspiderItem_NOTICE2
 from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
-
+import time, datetime
 domain_sz = "http://www.stc.gov.cn/"
 basic_url = 'http://www.stc.gov.cn/ZWGK/TZGG/GGJG/index'
-lastpage = 3
+lastpage = 2
 
 
 class MyBaseSpider(BaseSpider):
@@ -29,15 +31,24 @@ class MyBaseSpider(BaseSpider):
     #         rp = BeautifulSoup.BeautifulSoup(content)
     #         return rp.getText()
 
+    """TIMEFILTER : URGENT INCIDENT_ROAD REPAIR EVENT ONLY"""
+
+    def timefilter(self, rptime):
+        crtime = datetime.date.today().strftime('%Y_%m_%d')
+        if crtime == rptime:  # .replace('_',''):
+            return True
+        else:
+            return False
+
     def parse(self, response):
         selector = HtmlXPathSelector(response)
         sels = selector.select('//*[@id="mytable"]/tr')
+
         for sel in sels:
-            item = MyspiderItem()
-
-            partial_url = ''.join(sel.select('td[2]/a/@href').extract())
-            partial_time = ''.join(sel.select('td[3]/text()').extract())
-
+            item = MyspiderItem_NOTICE2()
+            partial_url = ''.join(sel.xpath('td[2]/a/@href').extract())
+            partial_time = ''.join(sel.xpath('td[3]/text()').extract())
+            self.displayUrgentEventonly = self.timefilter(partial_time)
             if partial_url:
                 _url = basic_url.replace('/index','/')
                 _url += partial_url
@@ -53,12 +64,16 @@ class MyBaseSpider(BaseSpider):
                         lstcontent.append(t.getText())
 
                 ecode_ctnt = (''.join(lstcontent)).strip().replace('&nbsp;','')
-                ecode_title = ''.join(sel.select('td[2]/a/@title').extract())
+                ecode_title = ''.join(sel.xpath('td[2]/a/@title').extract())
 
-                item['NOTICE_CONTENT'] = ecode_ctnt.encode('utf-8')
+                item['COLLECTDATE'] = datetime.date.today().strftime("%Y-%m-%d")
+                item['CONTENT'] = ecode_ctnt.encode('utf-8')
+                item['TITLE'] = ecode_title.encode('utf-8')
+                item['REF'] = _url
+                item['POSTFROM'] = '网上深圳交警'
+                item['POSTDATE'] = partial_time
 
-                item['NOTICE_TITLE'] = ecode_title.encode('utf-8')
-                item['NOTICE_REF'] = _url
-                item['NOTICE_DATETIME'] = partial_time
-
-            yield item
+            if not (self.displayUrgentEventonly):
+                yield item
+            else:
+                continue
