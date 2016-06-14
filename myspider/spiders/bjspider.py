@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import scrapy
 import urllib2
 import BeautifulSoup
@@ -10,7 +12,7 @@ domain_bj = "http://bjjtgl.gov.cn"
 basic_url = 'http://www.bjjtgl.gov.cn/jgj/jttg/7711-'
 
 
-class MyBaseSpider(BaseSpider):
+class MyBaseSpider_BJ(BaseSpider):
     name = 'bj1'
     allowed_domains = [domain_bj]
     start_urls = [
@@ -23,7 +25,7 @@ class MyBaseSpider(BaseSpider):
         # private variables for parsing HTML page
         self.flurls = []
 
-    # todo:change detection filter by datetime test
+
     def timefilter(self, rptime):
 
         crtime = datetime.date.today().strftime('%Y-%m-%d')
@@ -34,12 +36,12 @@ class MyBaseSpider(BaseSpider):
 
     def parse(self, response):
         selector = HtmlXPathSelector(response)
-        sels = selector.select('//div[@id="wuhang"]/ul/li')
+        sels = selector.select('//*[@id="wuhang"]/ul/li')
         for sel in sels:
             item = MyspiderItem_NOTICE()
 
-            partial_url = ''.join(sel.select('a/@href').extract())
-            partial_time = ''.join(sel.select('span/text()').extract())
+            partial_url = ''.join(sel.xpath('a/@href').extract())
+            partial_time = ''.join(sel.xpath('span/text()').extract())
 
             if partial_time:
                 partial_time = partial_time[1:-1]
@@ -58,15 +60,11 @@ class MyBaseSpider(BaseSpider):
                     lstcontent.append(t.getText())
 
             ecode_ctnt = (''.join(lstcontent)).strip().replace('&nbsp;','')
-            ecode_title = ''.join(sel.select('a/@title').extract())
+            ecode_title = ''.join(sel.xpath('a/@title').extract())
 
             item['NOTICE_CONTENT'] = ecode_ctnt.encode('utf-8')
             item['NOTICE_TITLE'] = ecode_title.encode('utf-8')
             item['NOTICE_REF'] = _url
             item['NOTICE_DATETIME'] = partial_time
 
-            display = self.timefilter(partial_time)
-            if display:  # showcurrent date
-                yield item
-            else:
-                continue
+            yield item

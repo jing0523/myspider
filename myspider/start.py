@@ -1,15 +1,20 @@
-from scrapy import cmdline
-import datetime,time
+# -*- coding: utf-8 -*-
+'''Run Scrapy Spider in Cmdline todo: run scrapy in a script'''
 
-cmd = ''
-tmptime = datetime.date.today().strftime('%Y%m%d')
-# beijing
-# cmd += 'scrapy crawl bj1 -o bj_data_'+tmptime + '.csv'
-# cmd += 'scrapy crawl bj2 -o bj_data2_'+tmptime + '.csv'
+# done:runs multiple spiders simultaneously
 
-# shenzhen
-cmd += 'scrapy crawl sz1'
+from scrapy.crawler import CrawlerProcess
+from scrapy.utils.project import get_project_settings
 
-cmdline.execute(cmd.split())
+from spiders.bjspider import MyBaseSpider_BJ
+from spiders.bjspider_urgent import MyBaseSpider_BJ_U1
+from spiders.szspider import MyBaseSpider_SZ
 
-# cmdline.execute('scrapy crawl sz1 -o sz_data_'+tmptime + '.csv')
+pip = get_project_settings()
+
+process = CrawlerProcess(pip)
+process.crawl(MyBaseSpider_BJ())
+
+process.crawl(MyBaseSpider_SZ())
+
+process.start()

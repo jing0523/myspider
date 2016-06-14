@@ -11,7 +11,8 @@ domain_bj = "http://www.btic.org.cn/xxzx/jtxxfw/cxts/"
 basic_url = 'http://www.btic.org.cn/xxzx/jtxxfw/cxts/index'
 lastpage = 5
 
-class MyBaseSpider(BaseSpider):
+
+class MyBaseSpider_BJ_U1(BaseSpider):
     name = 'bj2'
     allowed_domains = [domain_bj]
     start_urls = [basic_url + '.htm']
@@ -35,7 +36,7 @@ class MyBaseSpider(BaseSpider):
         else:
             return False
 
-    # todo:def function to set categories -move to pipeline.py
+
 
     def classifyWord(self, title):
         d = self.kwdictionary
@@ -51,7 +52,7 @@ class MyBaseSpider(BaseSpider):
         selector = HtmlXPathSelector(response)
         sels = selector.select('//div[@class="fzdt_con"]/dl')
         for sel in sels:
-            # todo:if no up-to-date data, write2log and
+
             item = MyspiderItem_NOTICE()
             partial_url = ''.join(sel.xpath('dd/a/@href').extract())
             partial_time = ''.join(sel.xpath('dt/text()').extract())
@@ -85,5 +86,5 @@ class MyBaseSpider(BaseSpider):
             item['NOTICE_DATETIME'] = partial_time
             # item['NOTICE_STATUS'] = self.classifyWord(item['NOTICE_TITLE'])
 
-            if (displayUrgentEventonly):
-                yield item
+            # if (displayUrgentEventonly):
+            yield item

@@ -8,6 +8,7 @@
 import scrapy
 
 
+# add still active flag
 class MyspiderItem_NOTICE(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
@@ -39,10 +40,3 @@ class MyspiderItem_NOTICE2(scrapy.Item):
     STATUS = scrapy.Field()
 
 
-class MyspiderItem_SH(scrapy.Item):
-    NOTICE_ROADNAME = scrapy.Field()
-    NOTICE_STOPREASON = scrapy.Field()
-    NOTICE_PLANTIME = scrapy.Field()
-    NOTICE_PLANTIMEDIS = scrapy.Field()
-    NOTICE_DESCRIBE = scrapy.Field()
-    showpage = scrapy.Field()

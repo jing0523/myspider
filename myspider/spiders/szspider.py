@@ -9,10 +9,10 @@ from scrapy.selector import HtmlXPathSelector
 import time, datetime
 domain_sz = "http://www.stc.gov.cn/"
 basic_url = 'http://www.stc.gov.cn/ZWGK/TZGG/GGJG/index'
-lastpage = 2
+lastpage = 1
 
 
-class MyBaseSpider(BaseSpider):
+class MyBaseSpider_SZ(BaseSpider):
     name = 'sz1'
     allowed_domains = [domain_sz]
     start_urls = [basic_url + '.htm']
