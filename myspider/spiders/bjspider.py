@@ -4,7 +4,7 @@ import scrapy
 import urllib2
 import BeautifulSoup
 import datetime
-from myspider.items import MyspiderItem_NOTICE
+from myspider.items import MyspiderItem
 from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
 
@@ -38,7 +38,7 @@ class MyBaseSpider_BJ(BaseSpider):
         selector = HtmlXPathSelector(response)
         sels = selector.select('//*[@id="wuhang"]/ul/li')
         for sel in sels:
-            item = MyspiderItem_NOTICE()
+            item = MyspiderItem()
 
             partial_url = ''.join(sel.xpath('a/@href').extract())
             partial_time = ''.join(sel.xpath('span/text()').extract())
@@ -61,10 +61,16 @@ class MyBaseSpider_BJ(BaseSpider):
 
             ecode_ctnt = (''.join(lstcontent)).strip().replace('&nbsp;','')
             ecode_title = ''.join(sel.xpath('a/@title').extract())
-
-            item['NOTICE_CONTENT'] = ecode_ctnt.encode('utf-8')
-            item['NOTICE_TITLE'] = ecode_title.encode('utf-8')
-            item['NOTICE_REF'] = _url
-            item['NOTICE_DATETIME'] = partial_time
+            # ['STATUS', 'ID', 'COLLECTDATE', 'EVENTTYPE', 'ROADNAME'
+            #     , 'DIRECTION', 'START_TIME', 'END_TIME', 'CONTENT', 'TITLE', 'REF', 'POSTDATE', 'POSTFROM'
+            #  ]
+            # item['NOTICE_CONTENT'] = ecode_ctnt.encode('utf-8')
+            # item['NOTICE_TITLE'] = ecode_title.encode('utf-8')
+            # item['NOTICE_REF'] = _url
+            # item['NOTICE_DATETIME'] = partial_time
+            item['CONTENT'] = ecode_ctnt.encode('utf-8')
+            item['TITLE'] = ecode_title.encode('utf-8')
+            item['REF'] = _url
+            item['POSTDATE'] = partial_time
 
             yield item

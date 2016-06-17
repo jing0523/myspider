@@ -27,30 +27,24 @@ outfile = outpath + 'sh1_roadevent_' + strn + '.csv'
 if not os.path.exists(outpath):
     os.mkdir('output')
 perpage = 9
-fieldnames = ['ID', 'COLLECTDATE', 'EVENTTYPE', 'ROADNAME'
+fieldnames = ['STATUS', 'ID', 'COLLECTDATE', 'EVENTTYPE', 'ROADNAME'
     , 'DIRECTION', 'START_TIME', 'END_TIME', 'CONTENT', 'TITLE', 'REF', 'POSTDATE', 'POSTFROM'
-    , '_STATUS']
+              ]
 
 
 def calc_page_pos(pageInd):
     return str(pageInd / perpage + 1)
 
 
-# set rules 2 filter news captured from websites
-class content_filter_rules(self):
-    def check_status(postdate, plandate):
-        from datetime import datetime
-        td = datetime.today()
-        dt2 = datetime.strptime(postdate, '%Y-%m-%d %H:%M')
-        dt3 = datetime.strptime(plandate, '%Y-%m-%d %H:%M')
+def check_status(postdate, plandate):
+    from datetime import datetime
+    td = datetime.today()
+    dt2 = datetime.strptime(postdate, '%Y-%m-%d %H:%M')
+    dt3 = datetime.strptime(plandate, '%Y-%m-%d %H:%M')
 
-        if (dt2 < td and dt3 > td):
-            return 'ACTIVE'
-        return 'OVERDUE'
-
-        # def text_filter(text):
-        #     return True
-
+    if (dt2 < td and dt3 > td):
+        return 'ACTIVE'
+    return 'OVERDUE'
 
 with open(outfile, 'w') as csvf:
     csvwriter = csv.DictWriter(csvf, fieldnames=fieldnames, delimiter=",", quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -58,6 +52,7 @@ with open(outfile, 'w') as csvf:
     # csvwriter.writerow(fieldnames)
     pdata = data['rows']
 
+    # todo: detection time- start time pick a later one
     for i in range(0, len(pdata), 1):
         dl = pdata[i]
 
@@ -73,16 +68,13 @@ with open(outfile, 'w') as csvf:
         rowdict['ROADNAME'] = dl[u'roadName']
         rowdict['DIRECTION'] = (dl[u'position'] + '_' + dl[u'directionTypeDis']).strip('\r\n\t')
         rowdict['START_TIME'] = ''
-        # 发生时间 from describe
         rowdict['END_TIME'] = str_plandate
         rowdict['CONTENT'] = dl[u'describe'].strip().replace('\n', '').replace('\r', '')
         rowdict['TITLE'] = dl[u'title'].strip().replace('\n', '').replace('\r', '')
-        # for QC to open to url
-        # rowdict['REF'] =  'Navigate to ' + calc_page_pos(i) +  '    page'
         rowdict['REF'] = str(calc_page_pos(i))
         rowdict['POSTDATE'] = str_postdate
         rowdict['POSTFROM'] = u'上海市路政局'
-        rowdict['_STATUS'] = content_filter_rules.check_status(str_postdate, str_plandate)
+        rowdict['STATUS'] = check_status(str_postdate, str_plandate)
 
         for key in rowdict:
             rowdict[key] = rowdict[key].encode('utf-8')

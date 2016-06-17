@@ -3,7 +3,7 @@
 import scrapy
 import urllib2
 import BeautifulSoup
-from myspider.items import MyspiderItem_NOTICE2
+from myspider.items import MyspiderItem
 from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
 import time, datetime
@@ -45,7 +45,7 @@ class MyBaseSpider_SZ(BaseSpider):
         sels = selector.select('//*[@id="mytable"]/tr')
 
         for sel in sels:
-            item = MyspiderItem_NOTICE2()
+            item = MyspiderItem()
             partial_url = ''.join(sel.xpath('td[2]/a/@href').extract())
             partial_time = ''.join(sel.xpath('td[3]/text()').extract())
             self.displayUrgentEventonly = self.timefilter(partial_time)

@@ -19,9 +19,10 @@ class MyspiderItem_NOTICE(scrapy.Item):
     NOTICE_STATUS = scrapy.Field()
 
 
-class MyspiderItem_NOTICE2(scrapy.Item):
+class MyspiderItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
+    STATUS = scrapy.Field()
     ID = scrapy.Field()
     COLLECTDATE = scrapy.Field()
     EVENTTYPE = scrapy.Field()
@@ -37,6 +38,3 @@ class MyspiderItem_NOTICE2(scrapy.Item):
     REF = scrapy.Field()
     POSTDATE = scrapy.Field()
     POSTFROM = scrapy.Field()
-    STATUS = scrapy.Field()
-
-

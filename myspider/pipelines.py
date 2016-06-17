@@ -8,6 +8,7 @@ import datetime, time
 from scrapy import signals
 from scrapy.contrib.exporter import CsvItemExporter
 
+
 class MyspiderPipeline(object):
     def __init__(self):
         # self.file = codecs.open("data.json", encoding="utf-8", mode="wb")
@@ -16,27 +17,33 @@ class MyspiderPipeline(object):
         pass
 
 class CSVPipeline(object):
+
     def __init__(self):
         self.files = {}
 
     # Rules - switchers
     def from_spider_to_fields(self, spider):
-        public_fields = ['ID', 'COLLECTDATE', 'EVENTTYPE', 'ROADNAME'
+        public_fields = ['STATUS', 'ID', 'COLLECTDATE', 'EVENTTYPE', 'ROADNAME'
             , 'DIRECTION', 'START_TIME', 'END_TIME', 'CONTENT', 'TITLE', 'REF', 'POSTDATE', 'POSTFROM'
-            , '_STATUS']
+                         ]
         switcher = {
             'sz1': ['POSTDATE', 'COLLECTDATE', 'TITLE', 'CONTENT', 'POSTFROM', 'REF'],
-            'bj1': ['NOTICE_DATETIME', 'NOTICE_TITLE', 'NOTICE_REF', 'NOTICE_CONTENT'],
+            'bj1': public_fields
         }
+
         return switcher.get(spider.name, 'NONE')
 
-    # todo:spider - based - filtering options
-    def item_filtering_options(self, spider):
-        # todo:filter all events still active, add flag
-        # define funciton returns group of arguments/  parser.add_option("-c", action="store_true", default=False, help='Produce a context format diff (default)')
-        pass
+    def check_status(self, item):
+        from datetime import datetime
+        td = datetime.today()
+        sdate = min(item['START_TIME'], item['POSTDATE'])
+        enddate = item['END_TIME']
+        dt2 = datetime.strptime(sdate, '%Y-%m-%d %H:%M')
+        dt3 = datetime.strptime(enddate, '%Y-%m-%d %H:%M')
 
-
+        if (dt2 < td and dt3 > td):
+            return 'ACTIVE'
+        return 'OVERDUE'
 
     @classmethod
     def from_crawler(cls, crawler):
@@ -60,9 +67,16 @@ class CSVPipeline(object):
         file.close()
 
     def process_item(self, item, spider):
+        # todo: check export options
 
-        # todo:re-parse item when exporting
-        # todo:filter all events still active, add flag
-        # todo:def function to set categories -move to pipeline.py - bjurgent
+        from optionclass import DataParser
+        from optionclass import ExportOptions
+        parser = DataParser()
+        parser.setRules(spider)
+        item['START_TIME'] = parser.check_fill_st(item['CONTENT'])
+        item['END_TIME'] = parser.check_fill_ed(item['CONTENT'])
+        # item['STATUS'] =  None#self.check_status(item)
+
+
         self.exporter.export_item(item)
         return item
