@@ -7,6 +7,7 @@ from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 
 from spiders.bjspider import MyBaseSpider_BJ
+from testpy import MyBaseSpider_BJ
 from spiders.szspider import MyBaseSpider_SZ
 import sys
 

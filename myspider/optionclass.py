@@ -38,7 +38,7 @@ class DataParser(object):
                 DateParserRule(pattern=u'决定自[0-9]{4}年([0-9]{1,2}月)?([0-9]{1,2}日)?起，',
                                start_pos=3, end_pos=-2, target='start'),
                 DateParserRule(pattern=u'[0-9]{4}年[0-9]{1,2}月[0-9]{1,2}日(起)?至([0-9]{4}年)?([0-9]{1,2}月)?([0-9]{1,2}日)?',
-                               start_pos=0, end_pos=10, target='start'),
+                               start_pos=0, end_pos=9, target='start'),
                 DateParserRule(pattern=u'[0-9]{4}年[0-9]{1,2}月[0-9]{1,2}日(起)?至([0-9]{4}年)?([0-9]{1,2}月)?([0-9]{1,2}日)?',
                                start_pos=10, end_pos=-1, target='end'),
 

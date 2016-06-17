@@ -30,10 +30,7 @@ class MyspiderItem(scrapy.Item):
     DIRECTION = scrapy.Field()
     START_TIME = scrapy.Field()
     END_TIME = scrapy.Field()
-    # regex \d{4}年\d+月\d+日
-
     CONTENT = scrapy.Field()
-
     TITLE = scrapy.Field()
     REF = scrapy.Field()
     POSTDATE = scrapy.Field()
