@@ -71,12 +71,12 @@ class CSVPipeline(object):
 
         from optionclass import DataParser
         from optionclass import ExportOptions
-        parser = DataParser()
-        parser.setRules(spider)
-        item['START_TIME'] = parser.check_fill_st(item['CONTENT'])
-        item['END_TIME'] = parser.check_fill_ed(item['CONTENT'])
-        # item['STATUS'] =  None#self.check_status(item)
 
-
-        self.exporter.export_item(item)
+        if spider.name in ['bj1', 'sz1']:  # add this filter crawl speed lower down
+            parser = DataParser()
+            parser.setRules(spider)
+            item['START_TIME'] = parser.check_fill_st(item['CONTENT'])
+            item['END_TIME'] = parser.check_fill_ed(item['CONTENT'])
+            # item['STATUS'] =  None#self.check_status(item)
+            self.exporter.export_item(item)
         return item

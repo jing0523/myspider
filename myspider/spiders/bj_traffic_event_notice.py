@@ -72,5 +72,7 @@ class MyBaseSpider_BJ(BaseSpider):
             item['TITLE'] = ecode_title.encode('utf-8')
             item['REF'] = _url
             item['POSTDATE'] = partial_time
+            item['COLLECTDATE'] = datetime.datetime.now()
+            item['POSTFROM'] = u'北京市公安局公安交通管理局通告'
 
             yield item

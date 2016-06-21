@@ -8,7 +8,11 @@
 import scrapy
 
 
+class googlePlayItem(scrapy.Item):
+    url = scrapy.Field()
+
 # add still active flag
+# todo: to- be - updated
 class MyspiderItem_NOTICE(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()

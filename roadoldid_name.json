@@ -1,0 +1,381 @@
+{
+  "status": "OK",
+  "data": [
+    {
+      "roadoldid": "4",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g15.png",
+      "shortname": "\u6c88\u6d77\u9ad8\u901f(\u676d\u6d66)",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "3",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g15.png",
+      "shortname": "\u6c88\u6d77\u9ad8\u901f(\u676d\u5dde\u6e7e\u5927\u6865)",
+      "num1": "0",
+      "num2": "0",
+      "num3": "1"
+    },
+    {
+      "roadoldid": "2",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g15.png",
+      "shortname": "\u6c88\u6d77\u9ad8\u901f(\u752c\u53f0\u6e29)",
+      "num1": "4",
+      "num2": "2",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "5",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g1501.png",
+      "shortname": "\u5b81\u6ce2\u7ed5\u57ce\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "6",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g1512.png",
+      "shortname": "\u752c\u91d1\u9ad8\u901f",
+      "num1": "0",
+      "num2": "2",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "7",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g1513.png",
+      "shortname": "\u6e29\u4e3d\u9ad8\u901f",
+      "num1": "2",
+      "num2": "1",
+      "num3": "1"
+    },
+    {
+      "roadoldid": "10",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g15w.png",
+      "shortname": "\u5e38\u53f0\u9ad8\u901f(\u4e4d\u5609\u82cf)",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "46",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g15w.png",
+      "shortname": "\u5e38\u53f0\u9ad8\u901f(\u5609\u7ecd)",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "47",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g15w.png",
+      "shortname": "\u5e38\u53f0\u9ad8\u901f(\u4e0a\u4e09)",
+      "num1": "1",
+      "num2": "1",
+      "num3": "1"
+    },
+    {
+      "roadoldid": "12",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g25.png",
+      "shortname": "\u957f\u6df1\u9ad8\u901f(\u676d\u5b81)",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "13",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g25.png",
+      "shortname": "\u957f\u6df1\u9ad8\u901f(\u676d\u65b0\u666f)",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "14",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g25.png",
+      "shortname": "\u957f\u6df1\u9ad8\u901f(\u4e3d\u9f99)",
+      "num1": "0",
+      "num2": "2",
+      "num3": "2"
+    },
+    {
+      "roadoldid": "45",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g25.png",
+      "shortname": "\u957f\u6df1\u9ad8\u901f(\u91d1\u4e3d)",
+      "num1": "0",
+      "num2": "2",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "15",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g25.png",
+      "shortname": "\u957f\u6df1\u9ad8\u901f(\u9f99\u5e86)",
+      "num1": "1",
+      "num2": "1",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "17",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g2501.png",
+      "shortname": "\u676d\u5dde\u7ed5\u57ce\u9ad8\u901f",
+      "num1": "5",
+      "num2": "1",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "16",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g2501.png",
+      "shortname": "\u676d\u5dde\u7ed5\u57ce\u9ad8\u901f(\u676d\u91d1\u8862)",
+      "num1": "0",
+      "num2": "1",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "1",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g3.png",
+      "shortname": "\u4eac\u53f0\u9ad8\u901f(\u9ec4\u8862\u5357)",
+      "num1": "0",
+      "num2": "4",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "18",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g50.png",
+      "shortname": "\u6caa\u6e1d\u9ad8\u901f(\u7533\u82cf\u6d59\u7696)",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "19",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g56.png",
+      "shortname": "\u676d\u745e\u9ad8\u901f(\u676d\u5fbd)",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "21",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g60.png",
+      "shortname": "\u6caa\u6606\u9ad8\u901f(\u6caa\u676d)",
+      "num1": "1",
+      "num2": "2",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "20",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g60.png",
+      "shortname": "\u6caa\u6606\u9ad8\u901f(\u676d\u91d1\u8862)",
+      "num1": "1",
+      "num2": "2",
+      "num3": "1"
+    },
+    {
+      "roadoldid": "51",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/ZJZHGS\/images\/20160120182841218.jpg",
+      "shortname": "\u676d\u91d1\u8862\u590d\u7ebf(\u676d\u65b0\u666f)",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "23",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g92.png",
+      "shortname": "\u676d\u5dde\u6e7e\u73af\u7ebf(\u676d\u6d66)",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "22",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g92.png",
+      "shortname": "\u676d\u5dde\u6e7e\u73af\u7ebf(\u676d\u752c)",
+      "num1": "0",
+      "num2": "10",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "24",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/g9211.png",
+      "shortname": "\u821f\u5c71\u8de8\u6d77\u5927\u6865",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "25",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s1.png",
+      "shortname": "\u752c\u53f0\u6e29\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "29",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s10.png",
+      "shortname": "\u6e29\u5dde\u7ed5\u57ce\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "30",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s11.png",
+      "shortname": "\u4e4d\u5609\u82cf\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "31",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s12.png",
+      "shortname": "\u7533\u5609\u6e56\u9ad8\u901f",
+      "num1": "0",
+      "num2": "4",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "32",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s13.png",
+      "shortname": "\u7ec3\u676d\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "33",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s14.png",
+      "shortname": "\u676d\u957f\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "34",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s16.png",
+      "shortname": "\u676d\u6d66\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "35",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s19.png",
+      "shortname": "\u8c61\u5c71\u6e2f\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "26",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s2.png",
+      "shortname": "\u676d\u752c\u9ad8\u901f",
+      "num1": "0",
+      "num2": "1",
+      "num3": "1"
+    },
+    {
+      "roadoldid": "36",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s20.png",
+      "shortname": "\u7a7f\u5c71\u758f\u6e2f\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "37",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s24.png",
+      "shortname": "\u7ecd\u8bf8\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "38",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s26.png",
+      "shortname": "\u8bf8\u6c38\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "50",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s27.png",
+      "shortname": "\u4e1c\u6c38\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "39",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s28.png",
+      "shortname": "\u53f0\u91d1\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "1"
+    },
+    {
+      "roadoldid": "48",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s31.png",
+      "shortname": "\u676d\u65b0\u666f\u9ad8\u901f",
+      "num1": "1",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "41",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s32.png",
+      "shortname": "\u676d\u65b0\u666f\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "42",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s33.png",
+      "shortname": "\u9f99\u4e3d\u6e29\u9ad8\u901f",
+      "num1": "1",
+      "num2": "1",
+      "num3": "1"
+    },
+    {
+      "roadoldid": "44",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s34.png",
+      "shortname": "\u4e91\u666f\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "52",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/ZJZHGS\/images\/20160510152814801.jpg",
+      "shortname": "\u673a\u573a\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "27",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s5.png",
+      "shortname": "\u676d\u752c\u9ad8\u901f",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "28",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s7.png",
+      "shortname": "\u676d\u5dde\u6e7e\u5927\u6865\u5317\u63a5\u7ebf",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    },
+    {
+      "roadoldid": "49",
+      "picurl": "http:\/\/zhejianggstapi.u-road.com\/newcode\/s9.png",
+      "shortname": "\u94b1\u6c5f\u901a\u9053",
+      "num1": "0",
+      "num2": "0",
+      "num3": "0"
+    }
+  ]
+}

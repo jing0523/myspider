@@ -70,7 +70,7 @@ class MyBaseSpider_SZ(BaseSpider):
                 item['CONTENT'] = ecode_ctnt.encode('utf-8')
                 item['TITLE'] = ecode_title.encode('utf-8')
                 item['REF'] = _url
-                item['POSTFROM'] = '网上深圳交警'
+                item['POSTFROM'] = u'网上深圳交警'
                 item['POSTDATE'] = partial_time
 
             if not (self.displayUrgentEventonly):

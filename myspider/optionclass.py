@@ -80,6 +80,23 @@ class DataParser(object):
         return end_datetime
 
 
-class ExportOptions:
+class ExportOptions(object):
+    '''
+        Attributes：-
+        isActiveUsed                 -bool           default true, will return active flag by comparing occurTime and endTime
+        eventType                    -str
+        datetimeparser               -<objs>         list of object: DataParser
+        hasImg                       -bool           contains supporting doc image or not
+        Method: -
+        Open_ImgDownload_Channel     -               open imagedownloader to download gif/png/jpeg
+
+        '''
     def __init__(self):
-        pass
+        self.isActiveUsed = True
+        self.eventType = ''
+        self.datetimeparser = None
+        self.hasImg = False
+
+    def Open_ImgDownload_Channel(self):
+        self.hasImg = True
+        # initialize image downloader
