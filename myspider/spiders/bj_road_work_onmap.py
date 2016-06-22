@@ -12,19 +12,12 @@ class MyBaseSpider_BJOnMap(Spider):
     allowed_domains = ['glcx.bjlzj.gov.cn']
 
     def parse(self, response):
-        for i in range(0, 1):
             yield FormRequest(
                 url="http://glcx.bjlzj.gov.cn/bjglwww/ws/publish/publishEvent/publishEvents",
                 method="POST",
                 formdata={},
                 callback=self.fill_in_items)
 
-    # def start_requests(self):
-    #     return [scrapy.http.FormRequest(
-    #         'http://glcx.bjlzj.gov.cn/bjglwww/ws/publish/publishEvent/publishEvents',
-    #         formdata=None,
-    #         callback=self.fill_in_items
-    #     )]
     def fill_in_items(self, response):
         # parse json and fill them into items
 

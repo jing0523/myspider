@@ -33,7 +33,7 @@ class DataParser(object):
         self.name = spider.name
         if not spider.name:
             return None
-        if spider.name == 'bj1':
+        if spider.name == 'bj1' or spider.name == 'sz1':
             self.parser_rules = [
                 DateParserRule(pattern=u'决定自[0-9]{4}年([0-9]{1,2}月)?([0-9]{1,2}日)?起，',
                                start_pos=3, end_pos=-2, target='start'),
@@ -42,6 +42,11 @@ class DataParser(object):
                 DateParserRule(pattern=u'[0-9]{4}年[0-9]{1,2}月[0-9]{1,2}日(起)?至([0-9]{4}年)?([0-9]{1,2}月)?([0-9]{1,2}日)?',
                                start_pos=10, end_pos=-1, target='end'),
 
+            ]
+        elif spider.name == 'zjHWApp':
+            self.parser_rules = [
+                DateParserRule(pattern=u'预计在[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}\s[0-9]{2}\:[0-9]{2}\:[0-9]{2}',
+                               start_pos=3, end_pos=-2, target='end'),
             ]
         return self.parser_rules
 
@@ -60,39 +65,42 @@ class DataParser(object):
 
         lst_datetime = list(set(lst_datetime))
         start_datetime = ';'.join(lst_datetime)
-        return start_datetime
+        return start_datetime.encode('utf-8')
 
     def check_fill_ed(self, test):
         import re
         end_datetime = ''
-        utest = unicode(test, 'utf8')
+        if (type(test) is str):
+            utest = unicode(test, 'utf8')
+        else:
+            utest = test
         lst_datetime = []
         for rule in [r for r in self.parser_rules if r.target == 'end']:
             p = re.compile(rule.pattern)
             for result in p.finditer(utest):
                 t = result.group()
                 rule.end_pos = len(t)
-                t = t[rule.start_pos:rule.end_pos]
+                t = t[rule.start_pos:]
                 lst_datetime.append(t)
 
         lst_datetime = list(set(lst_datetime))
         end_datetime = ';'.join(lst_datetime)  # consider one announcement contains 2+ records
-        return end_datetime
+        return end_datetime.encode('utf-8')
 
 
 class ExportOptions(object):
     '''
         Attributes：-
-        isActiveUsed                 -bool           default true, will return active flag by comparing occurTime and endTime
+        activeparser                 -<obj,bool>     default true, will return active flag by comparing occurTime and endTime
         eventType                    -str
-        datetimeparser               -<objs>         list of object: DataParser
+        datetimeparser               -<obj,bool>     bool:use parser (start_date?end_date),list of object: DataParser
         hasImg                       -bool           contains supporting doc image or not
         Method: -
         Open_ImgDownload_Channel     -               open imagedownloader to download gif/png/jpeg
 
         '''
     def __init__(self):
-        self.isActiveUsed = True
+        self.activeparser = None
         self.eventType = ''
         self.datetimeparser = None
         self.hasImg = False
@@ -100,3 +108,7 @@ class ExportOptions(object):
     def Open_ImgDownload_Channel(self):
         self.hasImg = True
         # initialize image downloader
+
+    def Write_Over_End_Date(self):
+        # self.datetimeparser =
+        pass
