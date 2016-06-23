@@ -2,7 +2,7 @@
 import scrapy
 import urllib2
 import BeautifulSoup
-from myspider.items import MyspiderItem_NOTICE
+from myspider.items import MyspiderItem
 from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
 
@@ -12,6 +12,7 @@ basic_url = 'http://www.btic.org.cn/xxzx/jtxxfw/cxts/index'
 lastpage = 5
 
 
+# todo: wei.fm.1039代替
 class MyBaseSpider_BJ_U1(BaseSpider):
     name = 'bj2'
     allowed_domains = [domain_bj]
@@ -80,10 +81,10 @@ class MyBaseSpider_BJ_U1(BaseSpider):
             ecode_ctnt = (''.join(lstcontent)).strip().replace('&nbsp;','')
             ecode_title = ''.join(sel.xpath('dd/a/@title').extract())
 
-            item['NOTICE_CONTENT'] = ecode_ctnt.encode('utf-8')
-            item['NOTICE_TITLE'] = ecode_title.encode('utf-8')
-            item['NOTICE_REF'] = _url
-            item['NOTICE_DATETIME'] = partial_time
+            # item['NOTICE_CONTENT'] = ecode_ctnt.encode('utf-8')
+            # item['NOTICE_TITLE'] = ecode_title.encode('utf-8')
+            # item['NOTICE_REF'] = _url
+            # item['NOTICE_DATETIME'] = partial_time
             # item['NOTICE_STATUS'] = self.classifyWord(item['NOTICE_TITLE'])
 
             # if (displayUrgentEventonly):

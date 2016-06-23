@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from scrapy.spider import Spider
 from scrapy.http import FormRequest
 from scrapy.http import Request
 from myspider.items import MyspiderItem
@@ -9,7 +8,7 @@ import json, codecs, os, sys
 import datetime, time
 
 
-class zjfHWApp(Spider):
+class zjfHWApp(scrapy.spiders.Spider):
     name = "zjHWApp"
     allowed_domains = ['zjzhgs.com']
     start_urls = [
@@ -78,8 +77,12 @@ class zjfHWApp(Spider):
                 item['DIRECTION'] = (e[u'directionname'] + str_passby_stations)
                 item['START_TIME'] = e[u'occtime']
                 item['END_TIME'] = datetime.datetime.today().strftime('%Y-%m-%d')
-                item['CONTENT'] = e[u'reportout'].encode('utf-8')
-                item['TITLE'] = e[u'title'].encode('utf-8')
+
+                # strip content
+                ecode_ctnt = (e[u'reportout'].strip().replace('\n', ' ').replace('\r', '')).encode('utf-8')
+                ecode_title = (''.join(e[u'title'].split())).encode('utf-8')
+                item['CONTENT'] = ecode_ctnt
+                item['TITLE'] = ecode_title
                 item['REF'] = 'http://app.zjzhgs.com/MQTTWechatAPIServer/businessserver/showhighdetail/' + str(
                     int_realRoadID)
                 item['POSTDATE'] = e[u'occtime'].encode('utf-8')

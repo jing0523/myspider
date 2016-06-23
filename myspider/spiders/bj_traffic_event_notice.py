@@ -5,7 +5,7 @@ import urllib2
 import BeautifulSoup
 import datetime
 from myspider.items import MyspiderItem
-from scrapy.spider import BaseSpider
+from scrapy.spiders import BaseSpider
 from scrapy.selector import HtmlXPathSelector
 
 domain_bj = "http://bjjtgl.gov.cn"
@@ -17,8 +17,7 @@ class MyBaseSpider_BJ(BaseSpider):
     allowed_domains = [domain_bj]
     start_urls = [
         'http://www.bjjtgl.gov.cn/jgj/jttg/7711-1.html',
-        'http://www.bjjtgl.gov.cn/jgj/jttg/7711-2.html',
-        'http://www.bjjtgl.gov.cn/jgj/jttg/7711-3.html'
+
     ]
 
     def __init__(self):

@@ -45,8 +45,13 @@ class DataParser(object):
             ]
         elif spider.name == 'zjHWApp':
             self.parser_rules = [
-                DateParserRule(pattern=u'预计在[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}\s[0-9]{2}\:[0-9]{2}\:[0-9]{2}',
+                DateParserRule(pattern=u'预计在[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}\s[0-9]{2}\:[0-9]{2}(\:[0-9]{2})?',
                                start_pos=3, end_pos=-2, target='end'),
+            ]
+        elif spider.name == 'bjevent2':
+            self.parser_rules = [
+                DateParserRule(pattern=u'预计恢复时间[0-9]{4}年[0-9]{1,2}月[0-9]{1,2}日',
+                               start_pos=6, end_pos=-2, target='end'),
             ]
         return self.parser_rules
 

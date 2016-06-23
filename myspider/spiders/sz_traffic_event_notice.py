@@ -4,7 +4,7 @@ import scrapy
 import urllib2
 import BeautifulSoup
 from myspider.items import MyspiderItem
-from scrapy.spider import BaseSpider
+from scrapy.spiders import BaseSpider
 from scrapy.selector import HtmlXPathSelector
 import time, datetime
 domain_sz = "http://www.stc.gov.cn/"

@@ -1,69 +1,43 @@
 # -*- coding: utf-8 -*-
-
-import scrapy
-import urllib2
-import BeautifulSoup
-import datetime
 from myspider.items import MyspiderItem
-from scrapy.spider import BaseSpider
 from scrapy.selector import HtmlXPathSelector
+import scrapy
+import datetime
 
-domain_bj = "http://bjjtgl.gov.cn"
-basic_url = 'http://www.bjjtgl.gov.cn/jgj/jttg/7711-'
 
-
-class MyBaseSpider_BJ(BaseSpider):
-    name = 'bj1'
-    allowed_domains = [domain_bj]
+class bjHWNews(scrapy.spiders.BaseSpider):
+    name = 'bjevent2'
+    allowed_domains = ['www.bj96011.com']
     start_urls = [
-        'http://www.bjjtgl.gov.cn/jgj/jttg/7711-1.html',
-        'http://www.bjjtgl.gov.cn/jgj/jttg/7711-2.html',
-        'http://www.bjjtgl.gov.cn/jgj/jttg/7711-3.html'
+        'http://www.bj96011.com/action.php?type=chuxingxinxi'  #referer
     ]
-
-    def __init__(self):
-        # private variables for parsing HTML page
-        self.flurls = []
-
-    def timefilter(self, rptime):
-
-        crtime = datetime.date.today().strftime('%Y-%m-%d')
-        if crtime == rptime:  # .replace('_',''):
-            return True
-        else:
-            return False
 
     def parse(self, response):
         selector = HtmlXPathSelector(response)
-        sels = selector.select('//*[@id="wuhang"]/ul/li')
+        sels = selector.select('//*[@class="road_one"]')
         for sel in sels:
             item = MyspiderItem()
 
-            partial_url = ''.join(sel.xpath('a/@href').extract())
-            partial_time = ''.join(sel.xpath('span/text()').extract())
+            roadname = ''.join(sel.xpath('div[@class="road_one_title"]/span[1]/text()').extract())
+            event_type = ''.join(sel.xpath('div[@class="road_one_title"]/span[2]/text()').extract())
+            occtime = ''.join(sel.xpath('div[@class="road_one_title"]/span[3]/text()').extract())
+            info = ''.join(sel.xpath('div[@class="road_info"]/p[1]/text()').extract())
+            partial_url = ''.join(sel.xpath('div[@class="road_info"]/p[2]/a/@href').extract())
 
-            if partial_time:
-                partial_time = partial_time[1:-1]
-            if partial_url:
-                _url = domain_bj
-                _url += partial_url
+            encode_ctnt = info.strip().replace('\n', '').replace('\r', '').encode('utf-8')
+            _url = self.allowed_domains[0] + '/' + partial_url
+            roadname = roadname.encode('utf-8')
+            event_type = event_type.encode('utf-8')
+            _title = roadname + event_type
 
-            # parse following urls content
-            rp = urllib2.urlopen(_url)
-            content = rp.read()
-            lstcontent = []
-            if content:
-                rp = BeautifulSoup.BeautifulSoup(content)
-                text = rp.findAll("p")
-                for t in text:
-                    lstcontent.append(t.getText())
-
-            ecode_ctnt = (''.join(lstcontent)).strip().replace('&nbsp;', '')
-            ecode_title = ''.join(sel.xpath('a/@title').extract())
-
-            item['CONTENT'] = ecode_ctnt.encode('utf-8')
-            item['TITLE'] = ecode_title.encode('utf-8')
+            item['CONTENT'] = encode_ctnt
+            item['ROADNAME'] = roadname
+            item['EVENTTYPE'] = event_type
+            item['TITLE'] = _title
             item['REF'] = _url
-            item['POSTDATE'] = partial_time
+            item['POSTDATE'] = occtime
+            item['START_TIME'] = occtime
+            item['COLLECTDATE'] = datetime.datetime.now()
+            item['POSTFROM'] = u'首发高速出行网'
 
             yield item
