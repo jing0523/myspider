@@ -20,6 +20,7 @@ NEWSPIDER_MODULE = 'myspider.spiders'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
+LOG_ENABLED = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -65,7 +66,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'myspider.pipelines.CSVPipeline': 500
+   'myspider.pipelines.CSVPipeline': 800
 
 }
 

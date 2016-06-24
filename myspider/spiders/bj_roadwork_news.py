@@ -9,7 +9,8 @@ class bjHWNews(scrapy.spiders.BaseSpider):
     name = 'bjevent2'
     allowed_domains = ['www.bj96011.com']
     start_urls = [
-        'http://www.bj96011.com/action.php?type=chuxingxinxi'  #referer
+        'http://www.bj96011.com/action.php?type=chuxingxinxi&page=1'  # referer
+        'http://www.bj96011.com/action.php?type=chuxingxinxi&page=2'  # referer
     ]
 
     def parse(self, response):

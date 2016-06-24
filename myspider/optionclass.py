@@ -33,7 +33,7 @@ class DataParser(object):
         self.name = spider.name
         if not spider.name:
             return None
-        if spider.name == 'bj1' or spider.name == 'sz1':
+        if spider.name in ['bj1', 'sz1', 'nj1']:
             self.parser_rules = [
                 DateParserRule(pattern=u'决定自[0-9]{4}年([0-9]{1,2}月)?([0-9]{1,2}日)?起，',
                                start_pos=3, end_pos=-2, target='start'),
@@ -53,6 +53,7 @@ class DataParser(object):
                 DateParserRule(pattern=u'预计恢复时间[0-9]{4}年[0-9]{1,2}月[0-9]{1,2}日',
                                start_pos=6, end_pos=-2, target='end'),
             ]
+
         return self.parser_rules
 
     def check_fill_st(self, test):

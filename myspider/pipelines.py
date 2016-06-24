@@ -7,30 +7,6 @@
 import datetime, time
 from scrapy import signals
 from scrapy.exporters import CsvItemExporter
-from scrapy.exporters import JsonItemExporter
-
-
-class JsonWriterPipeline(object):
-    def __init__(self):
-        self.files = {}
-
-    @classmethod
-
-    def process_item(self, item, spider):
-        from optionclass import DataParser
-        from optionclass import ExportOptions
-        import json
-        line = json.dumps(dict(item)) + "\n"
-        parser = DataParser()
-        parser.setRules(spider)
-        # add menu selections for either use spider setting or pipeline tools for generating date
-        item['START_TIME'] = parser.check_fill_st(item['CONTENT'])
-        item['END_TIME'] = parser.check_fill_ed(item['CONTENT'])
-        item['STATUS'] = None  # self.check_status(item)
-
-        self.file.write(line)
-        return item
-
 
 
 class CSVPipeline(object):
@@ -44,8 +20,13 @@ class CSVPipeline(object):
             , 'DIRECTION', 'START_TIME', 'END_TIME', 'CONTENT', 'TITLE', 'REF', 'POSTDATE', 'POSTFROM'
                          ]
         switcher = {
-            'sz1': ['POSTDATE', 'COLLECTDATE', 'TITLE', 'CONTENT', 'POSTFROM', 'REF'],
-            'bj1': public_fields
+            'sz1': public_fields,
+            'bj1': public_fields,
+            'nj1': public_fields,
+            'bjevent1': public_fields,
+            'bjevent2': public_fields,
+            'zjHWApp': public_fields,
+
         }
 
         return switcher.get(spider.name, 'NONE')
@@ -71,7 +52,7 @@ class CSVPipeline(object):
 
     def spider_opened(self, spider):
         # for all spiders
-        dt = datetime.datetime.today().strftime("%Y-%m-%d")
+        dt = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M")
         file = open('%s.csv' % (spider.name + '_' + dt), 'w+b')
         self.files[spider] = file
         self.exporter = CsvItemExporter(file)
@@ -93,7 +74,7 @@ class CSVPipeline(object):
         parser = DataParser()
         parser.setRules(spider)
         # add menu selections for either use spider setting or pipeline tools for generating date
-        # item['START_TIME'] = parser.check_fill_st(item['CONTENT'])
+        item['START_TIME'] = parser.check_fill_st(item['CONTENT'])
         item['END_TIME'] = parser.check_fill_ed(item['CONTENT'])
         item['STATUS'] = None  # self.check_status(item)
         self.exporter.export_item(item)
