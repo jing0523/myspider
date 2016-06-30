@@ -19,13 +19,17 @@ class CSVPipeline(object):
         public_fields = ['STATUS', 'ID', 'COLLECTDATE', 'EVENTTYPE', 'ROADNAME'
             , 'DIRECTION', 'START_TIME', 'END_TIME', 'CONTENT', 'TITLE', 'REF', 'POSTDATE', 'POSTFROM'
                          ]
+
+        light_public_fields = []
         switcher = {
             'sz1': public_fields,
             'bj1': public_fields,
             'nj1': public_fields,
-            'bjevent1': public_fields,
+            'bjevent': public_fields,
             'bjevent2': public_fields,
             'zjHWApp': public_fields,
+            'jsHWApp': public_fields,
+            'fjHWApp': public_fields,
 
         }
 
@@ -74,9 +78,16 @@ class CSVPipeline(object):
         parser = DataParser()
         parser.setRules(spider)
         # add menu selections for either use spider setting or pipeline tools for generating date
-        item['START_TIME'] = parser.check_fill_st(item['CONTENT'])
-        item['END_TIME'] = parser.check_fill_ed(item['CONTENT'])
-        item['STATUS'] = None  # self.check_status(item)
+        if spider.name in ['sz1',
+                           'bj1',
+                           'nj1',
+                           'bjevent',
+                           'bjevent',
+                           'zjHWApp',
+                           ]:
+            item['START_TIME'] = parser.check_fill_st(item['CONTENT'])
+            item['END_TIME'] = parser.check_fill_ed(item['CONTENT'])
+            item['STATUS'] = None  # self.check_status(item)
         self.exporter.export_item(item)
         return item
 

@@ -33,7 +33,7 @@ class DataParser(object):
         self.name = spider.name
         if not spider.name:
             return None
-        if spider.name in ['bj1', 'sz1', 'nj1']:
+        if spider.name in ['bj1', 'sz1', 'nj1']:  # 目前支持通告分析
             self.parser_rules = [
                 DateParserRule(pattern=u'决定自[0-9]{4}年([0-9]{1,2}月)?([0-9]{1,2}日)?起，',
                                start_pos=3, end_pos=-2, target='start'),
@@ -59,7 +59,10 @@ class DataParser(object):
     def check_fill_st(self, test):
         import re
 
-        utest = unicode(test, 'utf8')
+        if (type(test) is str):
+            utest = unicode(test, 'utf8')
+        else:
+            utest = test
         start_datetime = ''
         lst_datetime = []
         for rule in [r for r in self.parser_rules if r.target == 'start']:
